@@ -1,0 +1,26 @@
+package tech.positivethinkingcompany;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PartitionList {
+    public static<T> List<List<T>> partition(List<T> list, int size) {
+        List<List<T>> partitions = new ArrayList<>();
+
+        if (list.size() == 0) {
+            return partitions;
+        }
+
+        int length = list.size();
+
+        int numberOfPartitions = length / size + ((length % size == 0) ? 0 : 1);
+
+        for (int i = 0; i < numberOfPartitions; i++) {
+            int from = i * size;
+            int to = Math.min((i * size + size), length);
+            partitions.add(list.subList(from, to));
+        }
+
+        return partitions;
+    }
+}
